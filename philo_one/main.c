@@ -1,88 +1,45 @@
 #include "philo_one.h"
 
 
-int	ft_atoi(char *s)
+void    *execute(void *st)
 {
-	int				i;
-	unsigned long	res;
-	int				n;
-
-	i = 0;
-	res = 0;
-	n = 1;
-	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'
-			|| s[i] == '\v' || s[i] == '\f' || s[i] == '\r')
-		i++;
-	if (s[i] == '+' || s[i] == '-')
-	{
-		n = (s[i] == '-') ? -1 : 1;
-		i++;
-	}
-	while (s[i] && s[i] >= '0' && s[i] <= '9')
-	{
-		res = (res * 10) + (s[i] - '0');
-		if (res > LONG_MAX && n == 1)
-			return (-1);
-		if (res > LONG_MAX && n == -1)
-			return (0);
-		i++;
-	}
-	return ((int)(res * n));
+    long long  *s =(long long*)st;
+    printf("im the %ld\n",s);
+    return NULL;
 }
-
-
-int ft_ispositive(int *s, int n)
-{
-   
-    int i;
-
-    i = 0;
-    while(i < n)
-    {
-        
-        if (s[i] < 0)
-           return(0);
-        i++;
-    }
-    return (1);
-}
-
-
-
 
 
 int main(int c, char **argv)
 {
-    int *args;
-    int i;
-    int j;
+    t_state *state;
+    char *s="thread1";
+    char *s2="thread2";
 
-
-    i = 0;
-    j = 0;
-    args = malloc(sizeof(int) * c - 1);
-    if (c != 5 && c != 6)
+    state = malloc(sizeof(t_state));
+    parsing(c, argv, state);
+    printf("%d %d %d %d %d \n", state->number_of_philosophers, state->time_to_die, state->time_to_eat, state->time_to_sleep, state->number_of_times_each_philosopher_must_eat);
+    printf("from main\n");
+    // pthread_t t1, t2;
+    // int err1, err2;
+    // err1 = pthread_create(&t1, NULL, execute, (void*)s);
+    // err2 = pthread_create(&t2, NULL, execute, (void*)s2);
+    // pthread_detach(t1);
+    // pthread_detach(t2);
+    int i=0;
+    pthread_t threads_id[state->number_of_philosophers];
+    
+    while(i < state->number_of_philosophers)
     {
-        printf("uncorrect number of arguments\n");
-        exit(1);
-    }  
-    while(++i < c)
-        args[j++] = ft_atoi(argv[i]);
-    i = 0;
-    while(i < j)
-    {
-        printf("%d\n",args[i]);
+       if (pthread_create(&threads_id[i], NULL, execute, (void*)&threads_id[i]) != 0)
+        {
+            ft_putstr("pthread_create() error");
+            exit (1);
+        }
         i++;
     }
-    if (!ft_ispositive(args, c - 1))
-    {
-        printf("arguments should be positive\n");
-        exit(1);
-    }
-       
-    
-        
-    
+    sleep(3);
+    ft_putstr("from main...\n");
+
 
 }
 
@@ -123,40 +80,3 @@ int main(int c, char **argv)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-// void    *eat(void* sth)
-// {   
-//     char *value = (char*)sth;
-//     printf("from thread \n thread_%s is eating...\n", value);
-//     return NULL;
-// }
-
-
-// int main(int *c, char** argv)
-// {
-
-    // pthread_t pthread_id;
-    // int err;
-    // char *value = "nouhaila";
-    // err = pthread_create(&pthread_id, NULL, eat, (void*)value);
-    // if (err)
-    // {
-    //     printf("cant create thread..\n");
-    //     return (1);
-    // }
-    // pthread_join(pthread_id, NULL);
-    // printf("from main\n");
-
-
-    // return (0);
-// }
