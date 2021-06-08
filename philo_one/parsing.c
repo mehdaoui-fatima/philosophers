@@ -14,7 +14,7 @@ void    parsing(int c, char **argv, t_state *state)
     args = malloc(sizeof(int) * c - 1);
     if (c < 5)
     {
-        ft_putstr(INSU_ARGS);
+        ft_putstr(INSU_ARGS); 
         exit(1);
     }else if ( c > 6)
     {
@@ -25,6 +25,7 @@ void    parsing(int c, char **argv, t_state *state)
     {
         while(++i < c)
           args[j++] = ft_atoi(argv[i]);
+        // print_args(args,j);
         optional = (c == 6) ? args[4] : 60;
         if (!ft_ispositive(args, c - 1))
         {

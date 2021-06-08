@@ -6,6 +6,8 @@
 #include<unistd.h>
 #include<pthread.h>
 #include<limits.h>
+#include <sys/time.h>
+
 #define RED_ "\x1B[31m" 
 #define NRM_ "\x1B[0m"
 
@@ -17,13 +19,28 @@
 
 
 typedef struct s_state {
-    
+
     int number_of_philosophers;
     int time_to_die;
     int time_to_eat;
     int time_to_sleep;
     int number_of_times_each_philosopher_must_eat;
-}   t_state;
+    pthread_mutex_t mutex;
+    uint64_t start_time;
+    pthread_mutex_t *forks;
+}               t_state;
+
+typedef struct s_philo{
+    
+    int id;
+    t_state *state;
+    pthread_t pthread_id;
+    unsigned long long last_meal;
+    int left_fork;
+    int right_fork;
+}               t_philo;
+
+
 
 size_t	ft_strlen(const char *s);
 int     ft_atoi(char *s);
