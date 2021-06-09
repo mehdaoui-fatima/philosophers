@@ -28,14 +28,15 @@ typedef struct s_state {
     pthread_mutex_t mutex;
     uint64_t start_time;
     pthread_mutex_t *forks;
+    pthread_mutex_t simulation;
 }               t_state;
 
 typedef struct s_philo{
     
     int id;
-    t_state *state;
+    t_state *s;
     pthread_t pthread_id;
-    unsigned long long last_meal;
+    unsigned long long t_meal;
     int left_fork;
     int right_fork;
 }               t_philo;
