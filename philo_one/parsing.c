@@ -26,7 +26,6 @@ void    parsing(int c, char **argv, t_state *state)
         while(++i < c)
           args[j++] = ft_atoi(argv[i]);
         // print_args(args,j);
-        optional = (c == 6) ? args[4] : 60;
         if (!ft_ispositive(args, c - 1))
         {
             ft_putstr(RED_ POS_VALUES NRM_);
@@ -37,7 +36,7 @@ void    parsing(int c, char **argv, t_state *state)
             ft_putstr(FALSE_VALUES);
             exit (1);
         }
-        if (args[1] < 60 || args[2] < 60 || args[3] < 60 || optional < 60)
+        if (args[1] < 60 || args[2] < 60 || args[3] < 60)
         {
             ft_putstr(FALSE_TIME);
             exit (1);
@@ -47,6 +46,7 @@ void    parsing(int c, char **argv, t_state *state)
         state->time_to_eat = args[2];
         state->time_to_sleep = args[3];
         state->number_of_times_each_philosopher_must_eat = (c == 6)? args[4] : -1;
+        state->counter = 0;
     }
 
 

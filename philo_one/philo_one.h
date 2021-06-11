@@ -16,29 +16,39 @@
 #define POS_VALUES   "Error: Arguments should be positive "
 #define FALSE_VALUES "Error : Number of philosophers should be in rang [2..200] "
 #define FALSE_TIME   "Error: time_to_[die, eat, sleep, each_must_eat] should not be under 60ms "
+#define forking "has take a fork"
+#define eating "is eating"
+#define sleeping "is sleeping"
+#define died "died"
 
 
 typedef struct s_state {
 
-    int number_of_philosophers;
-    int time_to_die;
-    int time_to_eat;
-    int time_to_sleep;
-    int number_of_times_each_philosopher_must_eat;
-    pthread_mutex_t mutex;
-    uint64_t start_time;
-    pthread_mutex_t *forks;
-    pthread_mutex_t simulation;
+	int number_of_philosophers;
+	int time_to_die;
+	int time_to_eat;
+	int time_to_sleep;
+	int number_of_times_each_philosopher_must_eat;
+	pthread_mutex_t mutex;
+	uint64_t start_time;
+	pthread_mutex_t *forks;
+	pthread_mutex_t simulation;
+	pthread_mutex_t print_mutex;
+	int philo_died;
+	int	counter;
+
 }               t_state;
 
+
 typedef struct s_philo{
-    
-    int id;
-    t_state *s;
-    pthread_t pthread_id;
-    unsigned long long t_meal;
-    int left_fork;
-    int right_fork;
+	
+	int id;
+	t_state *s;
+	pthread_t pthread_id;
+	unsigned long long die_t;
+	int left_fork;
+	int right_fork;
+	int eat_number;
 }               t_philo;
 
 
