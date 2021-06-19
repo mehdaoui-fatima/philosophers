@@ -6,7 +6,7 @@
 /*   By: fmehdaou <fmehdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 18:14:58 by fmehdaou          #+#    #+#             */
-/*   Updated: 2021/06/19 18:22:31 by fmehdaou         ###   ########.fr       */
+/*   Updated: 2021/06/19 20:13:39 by fmehdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 void	eat(t_philo *philo)
 {
 	sem_wait(philo->state->forks);
-	print(philo, forking);
+	print(philo, FORKING);
 	sem_wait(philo->state->forks);
-	print(philo, forking);
+	print(philo, FORKING);
 	philo->die_t = get_time()
 		- philo->state->start_time + philo->state->time_to_die;
-	print(philo, eating);
+	print(philo, EATING);
 	usleep(philo->state->time_to_eat * 1000);
 	sem_post(philo->eat_sem);
 	sem_post(philo->state->forks);
@@ -29,7 +29,7 @@ void	eat(t_philo *philo)
 
 void	_sleep(t_philo *philo)
 {
-	print(philo, sleeping);
+	print(philo, SLEEPING);
 	usleep(philo->state->time_to_sleep * 1000);
 }
 
@@ -83,7 +83,7 @@ void	routine(t_philo *philo)
 	{
 		eat(philo);
 		_sleep(philo);
-		print(philo, thinking);
+		print(philo, THINKING);
 	}
 	exit (0);
 }

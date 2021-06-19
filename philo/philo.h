@@ -10,12 +10,9 @@
 
 #define RED_ "\x1B[31m" 
 #define NRM_ "\x1B[0m"
-
-#define MANY_ARGS    "Error: Too many arguments NRM_"
-#define INSU_ARGS    "Error: Insufficient number of arguments " 
-#define POS_VALUES   "Error: Arguments should be positive "
-#define FALSE_VALUES "Error : Number of philosophers should be in rang [1..200] "
-#define FALSE_TIME   "Error: time_to_[die, eat, sleep, each_must_eat] should not be under 60ms "
+# define MANY_ARGS		"Error: Incorrect number of arguments\n"
+# define FALSE_VALUES	"Error: Incorrect values\n"
+# define FALSE_TYPE		"Error: Arguments should be numbers, not strings\n"
 #define forking "has take a fork"
 #define eating "is eating"
 #define sleeping "is sleeping"
@@ -55,10 +52,10 @@ typedef struct s_philo{
 size_t	ft_strlen(const char *s);
 int     ft_atoi(char *s);
 int     ft_ispositive(int *s, int n);
-void	ft_putstr(char *s);
 void    print_args(int *args, int j);
-void    parsing(int c, char **argv, t_state *state);
-
+int					parsing(int c, char **argv, t_state *state);
+int					check_digit(char *s);
+int					is_digits(char **argv, int c);
 
 #endif
 
