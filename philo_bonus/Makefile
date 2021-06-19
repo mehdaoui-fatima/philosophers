@@ -6,15 +6,17 @@
 #    By: fmehdaou <fmehdaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/04 14:26:09 by fmehdaou          #+#    #+#              #
-#    Updated: 2021/06/05 17:44:34 by fmehdaou         ###   ########.fr        #
+#    Updated: 2021/06/18 19:01:08 by fmehdaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME			= philo_one 
+NAME			= philo_bonus
 
 SRCS			= main.c \
 				  utils.c \
-				  parsing.c
+				  parsing.c \
+				  routine.c \
+				  process_utils.c
 
 OBJS			= $(SRCS:.c=.o)
 
