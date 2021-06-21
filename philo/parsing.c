@@ -6,7 +6,7 @@
 /*   By: fmehdaou <fmehdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/18 16:05:43 by fmehdaou          #+#    #+#             */
-/*   Updated: 2021/06/19 20:16:44 by fmehdaou         ###   ########.fr       */
+/*   Updated: 2021/06/21 11:01:17 by fmehdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	parsing(int c, char **argv, t_state *state)
 		printf(FALSE_TYPE);
 	else
 	{
-		args = malloc(sizeof(int) * c - 1);
+		args = (int *)malloc(sizeof(int) * c - 1);
 		while (++i < c)
 			args[j++] = ft_atoi(argv[i]);
 		if (!valid_input(args, c))

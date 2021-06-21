@@ -6,7 +6,7 @@
 #    By: fmehdaou <fmehdaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/04 14:26:09 by fmehdaou          #+#    #+#              #
-#    Updated: 2021/06/12 11:45:43 by fmehdaou         ###   ########.fr        #
+#    Updated: 2021/06/21 09:38:35 by fmehdaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME			= philo
 
 SRCS			= main.c \
 				  utils.c \
-				  parsing.c
+				  parsing.c \
+				  routine.c \
+				  thread_utils.c
 
 OBJS			= $(SRCS:.c=.o)
 
